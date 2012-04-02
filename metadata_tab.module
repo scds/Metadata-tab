@@ -1,0 +1,147 @@
+<?php
+
+/**
+ * Implements islandora_tabs hook called from fedora_repository_get_items in fedora_repository.module
+ * @param $content_models
+ * @param $pid
+ **/
+function metadata_tab_islandora_tabs($content_models, $pid) {
+	$stream = getModsStream($pid);
+	$form['mods'] = array(
+		'#type' => 'tabpage',
+		'#title' => 'About',
+		'#selected' => FALSE,
+		'#content' => theme('metadata_tab_mods', $stream),
+	);
+	return $form;
+}
+
+/**
+ * Returns mods stream as a dictionary
+ * @param $pid
+ **/
+function getModsStream($pid) {
+	$dict = array();
+	$dstream = getDatastream($pid, 'MODS');
+	$dom = new DOMDocument('1.0', 'UTF-8');
+	$dom->loadXML($dstream);
+	foreach ($dom->getElementsByTagNameNS('http://www.loc.gov/mods/v3', '*') as $element) {
+		if ($element->localName != 'mods' && !empty($element->nodeValue)) {
+			$dict[$element->localName][] = trim($element->nodeValue);
+		}
+	}
+	return $dict;
+}
+
+/**
+ * Returns macrepo stream as a dictionary
+  * @param $pid
+  **/
+function getMacrepoStream($pid) {
+  $dict = array();
+  $dstream = getDataStream($pid, 'MACREPO');
+  $dom = new DOMDocument('1.0', 'UTF-8');
+  $dom->loadXML($dstream);
+  foreach ($dome->getElementsByTagNS('http://repository.mcmaster.ca/schema/index.html', '*') as $elemtnt) {
+    if ($element->localName != 'macrepo' && !empty($element->nodeValue)) {
+      $dict[$element->localName][] = trim($element->nodeValue);
+    }
+  }
+  return $dict;
+}
+
+/**
+ * Themes the MODS Metadata tab content
+ **/
+function theme_metadata_tab_mods($mods) {
+	$output = "<ul>";
+	$output .= sprintf("<li><strong>Title:</strong> %s</li>", implode('. ', $mods['title']));
+	$output .= sprintf("<li><strong>Name:</strong> %s</li>", implode('. ', $mods['name']));
+	$output .= sprintf("<li><strong>Type of resource:</strong> %s</li>", $mods['typeOfResource'][0]);
+	$output .= sprintf("<li><strong>Date created:</strong> %s</li>", $mods['dateCreated'][0]);
+	$output .= sprintf("<li><strong>Genre:</strong> %s</li>", $mods['genre'][0]);
+	$output .= sprintf("<li><strong>Language:</strong> %s</li>", $mods['language'][0]);
+	$output .= sprintf("<li><strong>Identifier:</strong> %s</li>", $mods['identifier'][0]);
+	$output .= sprintf("<li><strong>Physical description:</strong> %s</li>", $mods['physicalDescription'][0]);
+	$output .= sprintf("<li><strong>Form:</strong> %s</li>", $mods['form'][0]);
+	$output .= sprintf("<li><strong>MIME type:</strong> %s</li>", $mods['internetMediaType'][0]);
+	$output .= sprintf("<li><strong>Digital origin:</strong> %s</li>", $mods['digitalOrigin'][0]);
+	$output .= sprintf("<li><strong>Note:</strong> %s</li>", $mods['note'][0]);
+	$output .= sprintf("<li><strong>Physical location:</strong> %s</li>", $mods['physicalLocation'][0]);
+	$output .= sprintf("<li><strong>URL:</strong> %s</li>", l($mods['url'][0], $mods['url'][0]));
+	$output .= sprintf("<li><strong>Subject:</strong> %s</li>", $mods['subject'][0]);
+	$output .= sprintf("<li><strong>Topic:</strong> %s</li>", $mods['topic'][0]);
+	$output .= sprintf("<li><strong>Geographic:</strong> %s</li>", $mods['geographic'][0]);
+	$output .= sprintf("<li><strong>Temporal:</strong> %s</li>", $mods['temporal'][0]);
+	$output .= sprintf("<li><strong>Access condition:</strong> %s</li>", $mods['accessCondition'][0]);
+	$output .= "</ul>";
+	return $output;
+}
+
+/**
+ * Themes the MACREPO Metadata tab content
+ **/
+function theme_metadata_tab_macrepo($macrepo) {
+  $output = "<ul>";
+  $output .= sprintf("<li><strong>Box:</strong> %s</li>", implode('. ', $macrepo['boxNumber']));
+  $output .= sprintf("<li><strong>File:</strong> %s</li>", implode('. ', $macrepo['fileNumber']));
+  $output .= sprintf("<li><strong>Unit:</strong> %s</li>", implode('. ', $macrepo['unit']));
+  $output .= sprintf("<li><strong>Envelope:</strong> %s</li>", implode('. ', $macrepo['envelopeNumber']));
+  $output .= sprintf("<li><strong>Oblique:</strong> %s</li>", implode('. ', $macrepo['oblique']));
+  $output .= sprintf("<li><strong>Sub-series:</strong> %s</li>", implode('. ', $macrepo['subSeries']));
+  $output .= sprintf("<li><strong>Preservation notes:</strong> %s</li>", implode('. ', $macrepo['preservationNotes']));
+  $output .= sprintf("<li><strong>Digitization notes:</strong> %s</li>", implode('. ', $macrepo['digitizationNotes']));
+  $output .= sprintf("<li><strong>Theme:</strong> %s</li>", implode('. ', $macrepo['theme']));
+  $output .= sprintf("<li><strong>Era:</strong> %s</li>", implode('. ', $macrepo['era']));
+  $output .= sprintf("<li><strong>Edition number:</strong> %s</li>", implode('. ', $macrepo['editionNumber']));
+  $output .= sprintf("<li><strong>Photo reference:</strong> %s</li>", implode('. ', $macrepo['photoReference']));
+  $output .= sprintf("<li><strong>Bertrand Russell number:</strong> %s</li>", implode('. ', $macrepo['bertrandRussellNumber']));
+  $output .= sprintf("<li><strong>Location:</strong> %s</li>", implode('. ', $macrepo['location']));
+  $output .= sprintf("<li><strong>Unit:</strong> %s</li>", implode('. ', $macrepo['unit']));
+  $output .= sprintf("<li><strong>Biographical note:</strong> %s</li>", implode('. ', $macrepo['biographicalNote']));
+  $output .= sprintf("<li><strong>Prisoner number:</strong> %s</li>", implode('. ', $macrepo['prisonerNumber']));
+  $output .= sprintf("<li><strong>Prison block:</strong> %s</li>", implode('. ', $macrepo['prisonBlock']));
+  $output .= sprintf("<li><strong>Concentration camp:</strong> %s</li>", implode('. ', $macrepo['concentrationCamp']));
+  $output .= sprintf("<li><strong>P.O.W. camp:</strong> %s</li>", implode('. ', $macrepo['powCamp']));
+  $output .= sprintf("<li><strong>Gestapo camp:</strong> %s</li>", implode('. ', $macrepo['gestapoCamp']));
+  $output .= sprintf("<li><strong>Internment camp:</strong> %s</li>", implode('. ', $macrepo['internmentCamp']));
+  $output .= sprintf("<li><strong>Special codes:</strong> %s</li>", implode('. ', $macrepo['specialCodes']));
+  $output .= sprintf("<li><strong>Postmakr:</strong> %s</li>", implode('. ', $macrepo['postmark']));
+  $output .= sprintf("<li><strong>Sender:</strong> %s</li>", implode('. ', $macrepo['sender']));
+  $output .= sprintf("<li><strong>Recipient:</strong> %s</li>", implode('. ', $macrepo['recipient']));
+  $output .= sprintf("<li><strong>Case study:</strong> %s</li>", implode('. ', $macrepo['caseStudy']));
+  $output .= sprintf("<li><strong>Summary:</strong> %s</li>", implode('. ', $macrepo['summary']));
+  $output .= sprintf("<li><strong>Transcript:</strong> %s</li>", implode('. ', $macrepo['transcript']));
+  $output .= sprintf("<li><strong>Translation:</strong> %s</li>", implode('. ', $macrepo['translation']));
+  $output .= sprintf("<li><strong>Date (base map):</strong> %s</li>", implode('. ', $macrepo['dateBaseMap']));
+$output .= sprintf("<li><strong>Date (over print):</strong> %s</li>", implode('. ', $macrepo['dateOverPrint']));
+  $output .= sprintf("<li><strong>Sub camp:</strong> %s</li>", implode('. ', $macrepo['subCamp']));
+  $output .= sprintf("<li><strong>Date digitized:</strong> %s</li>", implode('. ', $macrepo['dateDigitized']));
+  return $output;
+}
+
+/**
+ * Implements hook_theme()
+ **/
+function metadata_tab_theme() {
+	return array(
+		'metadata_tab_mods' => array(
+			'arguments' => array('mods'),
+		),
+	);
+}
+
+/**
+ * Returns a datastream as an XML string, or a blank string if the datastream doesn't exist
+ * @param $pid
+ * @param $dsid
+ **/
+function getDatastream($pid, $dsid) {
+	module_load_include('inc', 'fedora_repository', 'ObjectHelper');
+	$obj = new ObjectHelper();
+	if ($obj->getDatastreamInfo($pid, $dsid)) {
+		$stream = $obj->getStream($pid, $dsid);
+	}
+	return $stream;
+}
+
