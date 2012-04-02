@@ -82,42 +82,57 @@ function theme_metadata_tab_mods($mods) {
  * Themes the MACREPO Metadata tab content
  **/
 function theme_metadata_tab_macrepo($macrepo) {
-  $output = "<ul>";
-  $output .= sprintf("<li><strong>Box:</strong> %s</li>", implode('. ', $macrepo['boxNumber']));
-  $output .= sprintf("<li><strong>File:</strong> %s</li>", implode('. ', $macrepo['fileNumber']));
-  $output .= sprintf("<li><strong>Unit:</strong> %s</li>", implode('. ', $macrepo['unit']));
-  $output .= sprintf("<li><strong>Envelope:</strong> %s</li>", implode('. ', $macrepo['envelopeNumber']));
-  $output .= sprintf("<li><strong>Oblique:</strong> %s</li>", implode('. ', $macrepo['oblique']));
-  $output .= sprintf("<li><strong>Sub-series:</strong> %s</li>", implode('. ', $macrepo['subSeries']));
-  $output .= sprintf("<li><strong>Preservation notes:</strong> %s</li>", implode('. ', $macrepo['preservationNotes']));
-  $output .= sprintf("<li><strong>Digitization notes:</strong> %s</li>", implode('. ', $macrepo['digitizationNotes']));
-  $output .= sprintf("<li><strong>Theme:</strong> %s</li>", implode('. ', $macrepo['theme']));
-  $output .= sprintf("<li><strong>Era:</strong> %s</li>", implode('. ', $macrepo['era']));
-  $output .= sprintf("<li><strong>Edition number:</strong> %s</li>", implode('. ', $macrepo['editionNumber']));
-  $output .= sprintf("<li><strong>Photo reference:</strong> %s</li>", implode('. ', $macrepo['photoReference']));
-  $output .= sprintf("<li><strong>Bertrand Russell number:</strong> %s</li>", implode('. ', $macrepo['bertrandRussellNumber']));
-  $output .= sprintf("<li><strong>Location:</strong> %s</li>", implode('. ', $macrepo['location']));
-  $output .= sprintf("<li><strong>Unit:</strong> %s</li>", implode('. ', $macrepo['unit']));
-  $output .= sprintf("<li><strong>Biographical note:</strong> %s</li>", implode('. ', $macrepo['biographicalNote']));
-  $output .= sprintf("<li><strong>Prisoner number:</strong> %s</li>", implode('. ', $macrepo['prisonerNumber']));
-  $output .= sprintf("<li><strong>Prison block:</strong> %s</li>", implode('. ', $macrepo['prisonBlock']));
-  $output .= sprintf("<li><strong>Concentration camp:</strong> %s</li>", implode('. ', $macrepo['concentrationCamp']));
-  $output .= sprintf("<li><strong>P.O.W. camp:</strong> %s</li>", implode('. ', $macrepo['powCamp']));
-  $output .= sprintf("<li><strong>Gestapo camp:</strong> %s</li>", implode('. ', $macrepo['gestapoCamp']));
-  $output .= sprintf("<li><strong>Internment camp:</strong> %s</li>", implode('. ', $macrepo['internmentCamp']));
-  $output .= sprintf("<li><strong>Special codes:</strong> %s</li>", implode('. ', $macrepo['specialCodes']));
-  $output .= sprintf("<li><strong>Postmakr:</strong> %s</li>", implode('. ', $macrepo['postmark']));
-  $output .= sprintf("<li><strong>Sender:</strong> %s</li>", implode('. ', $macrepo['sender']));
-  $output .= sprintf("<li><strong>Recipient:</strong> %s</li>", implode('. ', $macrepo['recipient']));
-  $output .= sprintf("<li><strong>Case study:</strong> %s</li>", implode('. ', $macrepo['caseStudy']));
-  $output .= sprintf("<li><strong>Summary:</strong> %s</li>", implode('. ', $macrepo['summary']));
-  $output .= sprintf("<li><strong>Transcript:</strong> %s</li>", implode('. ', $macrepo['transcript']));
-  $output .= sprintf("<li><strong>Translation:</strong> %s</li>", implode('. ', $macrepo['translation']));
-  $output .= sprintf("<li><strong>Date (base map):</strong> %s</li>", implode('. ', $macrepo['dateBaseMap']));
-$output .= sprintf("<li><strong>Date (over print):</strong> %s</li>", implode('. ', $macrepo['dateOverPrint']));
-  $output .= sprintf("<li><strong>Sub camp:</strong> %s</li>", implode('. ', $macrepo['subCamp']));
-  $output .= sprintf("<li><strong>Date digitized:</strong> %s</li>", implode('. ', $macrepo['dateDigitized']));
-  return $output;
+	$output = "<ul>";
+	$output .= sprintf("<li><strong>Box:</strong> %s</li>", implode('. ', $macrepo['boxNumber']));
+	$output .= sprintf("<li><strong>File:</strong> %s</li>", implode('. ', $macrepo['fileNumber']));
+	$output .= sprintf("<li><strong>Unit:</strong> %s</li>", implode('. ', $macrepo['unit']));
+	$output .= sprintf("<li><strong>Envelope:</strong> %s</li>", implode('. ', $macrepo['envelopeNumber']));
+	$output .= sprintf("<li><strong>Oblique:</strong> %s</li>", implode('. ', $macrepo['oblique']));
+	$output .= sprintf("<li><strong>Sub-series:</strong> %s</li>", implode('. ', $macrepo['subSeries']));
+	$output .= sprintf("<li><strong>Preservation notes:</strong> %s</li>", implode('. ', $macrepo['preservationNotes']));
+	$output .= sprintf("<li><strong>Digitization notes:</strong> %s</li>", implode('. ', $macrepo['digitizationNotes']));
+	$output .= sprintf("<li><strong>Theme:</strong> %s</li>", implode('. ', $macrepo['theme']));
+	$output .= sprintf("<li><strong>Era:</strong> %s</li>", implode('. ', $macrepo['era']));
+	$output .= sprintf("<li><strong>Edition number:</strong> %s</li>", implode('. ', $macrepo['editionNumber']));
+	$output .= sprintf("<li><strong>Photo reference:</strong> %s</li>", implode('. ', $macrepo['photoReference']));
+	$output .= sprintf("<li><strong>Bertrand Russell number:</strong> %s</li>", implode('. ', $macrepo['bertrandRussellNumber']));
+	$output .= sprintf("<li><strong>Location:</strong> %s</li>", implode('. ', $macrepo['location']));
+	$output .= sprintf("<li><strong>Biographical note:</strong> %s</li>", implode('. ', $macrepo['biographicalNote']));
+	$output .= sprintf("<li><strong>Prisoner number:</strong> %s</li>", implode('. ', $macrepo['prisonerNumber']));
+	$output .= sprintf("<li><strong>Prison block:</strong> %s</li>", implode('. ', $macrepo['prisonBlock']));
+	$output .= sprintf("<li><strong>Concentration camp:</strong> %s</li>", implode('. ', $macrepo['concentrationCamp']));
+	$output .= sprintf("<li><strong>P.O.W. camp:</strong> %s</li>", implode('. ', $macrepo['powCamp']));
+	$output .= sprintf("<li><strong>Gestapo camp:</strong> %s</li>", implode('. ', $macrepo['gestapoCamp']));
+	$output .= sprintf("<li><strong>Internment camp:</strong> %s</li>", implode('. ', $macrepo['internmentCamp']));
+	$output .= sprintf("<li><strong>Special codes:</strong> %s</li>", implode('. ', $macrepo['specialCodes']));
+	$output .= sprintf("<li><strong>Postmakr:</strong> %s</li>", implode('. ', $macrepo['postmark']));
+	$output .= sprintf("<li><strong>Sender:</strong> %s</li>", implode('. ', $macrepo['sender']));
+	$output .= sprintf("<li><strong>Recipient:</strong> %s</li>", implode('. ', $macrepo['recipient']));
+	$output .= sprintf("<li><strong>Case study:</strong> %s</li>", implode('. ', $macrepo['caseStudy']));
+	$output .= sprintf("<li><strong>Summary:</strong> %s</li>", implode('. ', $macrepo['summary']));
+	$output .= sprintf("<li><strong>Transcript:</strong> %s</li>", implode('. ', $macrepo['transcript']));
+	$output .= sprintf("<li><strong>Translation:</strong> %s</li>", implode('. ', $macrepo['translation']));
+	$output .= sprintf("<li><strong>Date (base map):</strong> %s</li>", implode('. ', $macrepo['dateBaseMap']));
+	$output .= sprintf("<li><strong>Date (over print):</strong> %s</li>", implode('. ', $macrepo['dateOverPrint']));
+	$output .= sprintf("<li><strong>Sub camp:</strong> %s</li>", implode('. ', $macrepo['subCamp']));
+	$output .= sprintf("<li><strong>Date digitized:</strong> %s</li>", implode('. ', $macrepo['dateDigitized']));
+	$output .= sprintf("<li><strong>Base map producer:</strong> %s</li>", implode('. ', $macrepo['baseMapProducer']));
+	$output .= sprintf("<li><strong>Censor:</strong> %s</li>", implode('. ', $macrepo['censor']));
+	$output .= sprintf("<li><strong>Special labels:</strong> %s</li>", implode('. ', $macrepo['specialLabels']));
+	$output .= sprintf("<li><strong>Related:</strong> %s</li>", implode('. ', $macrepo['taxonomyTerms']));
+	$output .= sprintf("<li><strong>Prisoner name:</strong> %s</li>", implode('. ', $macrepo['prisonerName']));
+	$output .= sprintf("<li><strong>Annotation:</strong> %s</li>", implode('. ', $macrepo['annotation']));
+	$output .= sprintf("<li><strong>Sheet title:</strong> %s</li>", implode('. ', $macrepo['sheetTitle']));
+	$output .= sprintf("<li><strong>Distance vertical:</strong> %s</li>", implode('. ', $macrepo['distanceVertical']));
+	$output .= sprintf("<li><strong>Distance horizontal:</strong> %s</li>", implode('. ', $macrepo['distanceHorizontal']));
+	$output .= sprintf("<li><strong>Sheet number:</strong> %s</li>", implode('. ', $macrepo['sheetNumber']));
+	$output .= sprintf("<li><strong>Series number:</strong> %s</li>", implode('. ', $macrepo['seriesNumber']));
+	$output .= sprintf("<li><strong>Series name:</strong> %s</li>", implode('. ', $macrepo['seriesName']));
+	$output .= sprintf("<li><strong>Map sheet reference:</strong> %s</li>", implode('. ', $macrepo['mapSheetReference']));
+	$output .= sprintf("<li><strong>Map id:</strong> %s</li>", implode('. ', $macrepo['mapID']));
+	$output .= sprintf("<li><strong>Old nid:</strong> %s</li>", implode('. ', $macrepo['oldNid']));
+	$output .= "</ul>";
+	return $output;
 }
 
 /**
@@ -127,6 +142,7 @@ function metadata_tab_theme() {
 	return array(
 		'metadata_tab_mods' => array(
 			'arguments' => array('mods'),
+			'arguments' => array('macrepo'),
 		),
 	);
 }
